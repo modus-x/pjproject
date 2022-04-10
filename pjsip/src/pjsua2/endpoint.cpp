@@ -580,10 +580,9 @@ mainThread(NULL), pendingJobSize(0)
     if (instance_) {
 	PJSUA2_RAISE_ERROR(PJ_EEXISTS);
     }
-
+    audioDevMgr = std::make_shared<AudDevManager>();
     instance_ = this;
 }
-
 Endpoint& Endpoint::instance() PJSUA2_THROW(Error)
 {
     if (!instance_) {
@@ -2342,9 +2341,13 @@ bool Endpoint::mediaExists(const AudioMedia &media) const
     return (pjsua_conf_get_port_info(id, &pi) == PJ_SUCCESS);
 }
 
+std::shared_ptr<AudDevManager>& Endpoint::sharedAudDevManager() {
+    return audioDevMgr;
+}
+
 AudDevManager &Endpoint::audDevManager()
 {
-    return audioDevMgr;
+    return *audioDevMgr.get();
 }
 
 VidDevManager &Endpoint::vidDevManager()

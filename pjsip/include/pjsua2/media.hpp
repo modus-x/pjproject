@@ -1485,7 +1485,6 @@ public:
      */
     bool getPlc() const PJSUA2_THROW(Error);
 
-private:
 #if !DEPRECATED_FOR_TICKET_2232
     AudioDevInfoVector		 audioDevList;
 #endif
