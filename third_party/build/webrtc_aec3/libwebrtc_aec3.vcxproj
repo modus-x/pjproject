@@ -104,7 +104,7 @@
     <InstSet Condition="$(Platform)==x64">SSE</InstSet>
     <InstSet Condition="$(Platform)==ARM">NEON</InstSet>
     <InstSet Condition="$(Platform)==ARM64">NEON</InstSet>
-  </PropertyGroup>    
+  </PropertyGroup>
   <ItemGroup>
     <ClInclude Include="..\..\webrtc_aec3\src\absl\base\config.h" />
     <ClInclude Include="..\..\webrtc_aec3\src\api\audio\echo_control.h" />
@@ -415,7 +415,7 @@
   </PropertyGroup>
   <!-- Override the PlatformToolset -->
   <PropertyGroup>
-    <PlatformToolset>$(BuildToolset)</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet Condition="'$(API_Family)'!='WinDesktop'">
     </CharacterSet>
   </PropertyGroup>

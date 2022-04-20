@@ -22,6 +22,7 @@
 #include <pjsua2/presence.hpp>
 #include <algorithm>
 #include "util.hpp"
+#include <iostream>
 
 using namespace pj;
 using namespace std;
@@ -1815,6 +1816,8 @@ Version Endpoint::libVersion() const
 
 void Endpoint::libCreate() PJSUA2_THROW(Error)
 {
+    
+    std::cout << "*** yessss, inside libCreate!" << std::endl;
     PJSUA2_CHECK_EXPR( pjsua_create() );
     mainThread = pj_thread_this();
     

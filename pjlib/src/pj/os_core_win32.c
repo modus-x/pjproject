@@ -583,9 +583,6 @@ PJ_DEF(pj_thread_t*) pj_thread_this(void)
     pj_thread_t *rec = pj_thread_local_get(thread_tls_id);
 
     if (rec == NULL) {
-	pj_assert(!"Calling pjlib from unknown/external thread. You must "
-		   "register external threads with pj_thread_register() "
-		   "before calling any pjlib functions.");
     }
 
     /*

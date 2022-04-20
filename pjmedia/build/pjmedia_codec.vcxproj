@@ -253,7 +253,7 @@
   </PropertyGroup>
   <!-- Override the PlatformToolset -->
   <PropertyGroup>
-    <PlatformToolset>$(BuildToolset)</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet Condition="'$(API_Family)'!='WinDesktop'">
     </CharacterSet>
   </PropertyGroup>
@@ -385,6 +385,30 @@
     <_ProjectFileVersion>14.0.22823.1</_ProjectFileVersion>
     <TargetName>pjmedia-codec-$(TargetCPU)-$(Platform)-vc$(VSVer)-$(Configuration)</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <ExternalIncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Dynamic|x64'">
+    <IncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <ExternalIncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Static|x64'">
+    <IncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <ExternalIncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <ExternalIncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Dynamic|x64'">
+    <IncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <ExternalIncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static|x64'">
+    <IncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <ExternalIncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
+  </PropertyGroup>
   <!-- Compile and link option definition -->
   <ItemDefinitionGroup>
     <ClCompile>
@@ -424,6 +448,8 @@
     </ClCompile>
     <Lib>
       <OutputFile>..\lib\pjmedia-codec-$(TargetCPU)-$(Platform)-vc$(VSVer)-$(Configuration).lib</OutputFile>
+      <AdditionalDependencies>bcg729.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Code\dart_pjsip\pjproject\lib</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -471,6 +497,8 @@
     </ClCompile>
     <Lib>
       <OutputFile>..\lib\pjmedia-codec-$(TargetCPU)-$(Platform)-vc$(VSVer)-$(Configuration).lib</OutputFile>
+      <AdditionalDependencies>bcg729.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Code\dart_pjsip\pjproject\lib</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -518,6 +546,8 @@
     </ClCompile>
     <Lib>
       <OutputFile>..\lib\pjmedia-codec-$(TargetCPU)-$(Platform)-vc$(VSVer)-$(Configuration).lib</OutputFile>
+      <AdditionalDependencies>bcg729.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Code\dart_pjsip\pjproject\lib</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Static|ARM64'">
@@ -565,6 +595,8 @@
     </ClCompile>
     <Lib>
       <OutputFile>..\lib\pjmedia-codec-$(TargetCPU)-$(Platform)-vc$(VSVer)-$(Configuration).lib</OutputFile>
+      <AdditionalDependencies>bcg729.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Code\dart_pjsip\pjproject\lib</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-Dynamic|ARM64'">
@@ -612,6 +644,8 @@
     </ClCompile>
     <Lib>
       <OutputFile>..\lib\pjmedia-codec-$(TargetCPU)-$(Platform)-vc$(VSVer)-$(Configuration).lib</OutputFile>
+      <AdditionalDependencies>bcg729.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Code\dart_pjsip\pjproject\lib</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Dynamic|ARM64'">
@@ -659,6 +693,8 @@
     </ClCompile>
     <Lib>
       <OutputFile>..\lib\pjmedia-codec-$(TargetCPU)-$(Platform)-vc$(VSVer)-$(Configuration).lib</OutputFile>
+      <AdditionalDependencies>bcg729.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Code\dart_pjsip\pjproject\lib</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static|ARM64'">

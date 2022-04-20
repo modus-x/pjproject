@@ -379,6 +379,7 @@ typedef struct pjsua_buddy
     pj_str_t		 term_reason;/**< Subscription termination reason */
     pjsip_pres_status	 status;    /**< Buddy presence status.		*/
     pj_timer_entry	 timer;	    /**< Resubscription timer		*/
+    pj_str_t event;             /**< Event type for some 112 notifications */
 } pjsua_buddy;
 
 

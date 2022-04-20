@@ -137,6 +137,7 @@ void Buddy::create(Account &account, const BuddyConfig &cfg)
     bud->acc  = &account;
 
     pj_cfg.uri = str2Pj(cfg.uri);
+    pj_cfg.event = str2Pj(cfg.event);
     pj_cfg.subscribe = cfg.subscribe;
     pj_cfg.user_data = (void*)bud;
     PJSUA2_CHECK_EXPR( pjsua_buddy_add(&pj_cfg, &id) );

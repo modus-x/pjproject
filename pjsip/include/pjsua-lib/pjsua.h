@@ -6148,6 +6148,11 @@ typedef struct pjsua_buddy_config
     pj_bool_t	subscribe;
 
     /**
+     * Specify custom event for 112 systems
+     */
+    pj_str_t event;
+
+    /**
      * Specify arbitrary application data to be associated with with
      * the buddy object.
      */

@@ -94,6 +94,12 @@ struct BuddyConfig : public PersistentObject
      */
     bool	 	 subscribe;
 
+    /**
+     * Specify event type (for 112)
+     */
+    string event = "presence";
+
+
 public:
     /**
      * Read this object from a container node.

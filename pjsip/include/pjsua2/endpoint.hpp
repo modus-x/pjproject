@@ -28,6 +28,7 @@
 #include <pjsua2/siptypes.hpp>
 #include <list>
 #include <map>
+#include <memory>
 
 /** PJSUA2 API is inside pj namespace */
 namespace pj

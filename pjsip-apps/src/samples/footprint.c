@@ -427,7 +427,7 @@ int dummy_function()
 #ifdef HAS_PJSIP_PRESENCE
     pjsip_pres_init_module(NULL, NULL);
     pjsip_pres_instance();
-    pjsip_pres_create_uac(NULL, NULL, 0, NULL);
+    pjsip_pres_create_uac(NULL, NULL, 0, NULL, NULL);
     pjsip_pres_create_uas(NULL, NULL, NULL, NULL);
     pjsip_pres_terminate(NULL, PJ_FALSE);
     pjsip_pres_initiate(NULL, 100, NULL);

@@ -126,7 +126,8 @@ typedef struct pjsip_pres_status pjsip_pres_status;
 PJ_DECL(pj_status_t) pjsip_pres_create_uac( pjsip_dialog *dlg,
 					    const pjsip_evsub_user *user_cb,
 					    unsigned options,
-					    pjsip_evsub **p_evsub );
+					    pjsip_evsub **p_evsub,
+						const pj_str_t *event );
 
 
 /**
