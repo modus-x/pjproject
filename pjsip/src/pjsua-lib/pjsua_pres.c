@@ -256,6 +256,11 @@ pjsua_buddy_get_info(pjsua_buddy_id buddy_id,
 	pj_strncpy(&info->uri, &buddy->uri, sizeof(info->buf_) - total);
 	total += info->uri.slen;
 
+	/* event */
+	info->event.ptr = info->buf_ + total;
+	pj_strncpy(&info->event, &buddy->event, sizeof(info->buf_) - total);
+	total += info->event.slen;
+
 	/* contact */
 	if (total < sizeof(info->buf_))
 	{
@@ -410,6 +415,7 @@ pjsua_buddy_add(const pjsua_buddy_config *cfg,
 	pjsip_sip_uri *sip_uri;
 	int index;
 	pj_str_t tmp;
+	pj_str_t tmpEvent;
 
 	PJ_ASSERT_RETURN(pjsua_var.buddy_cnt <=
 						 PJ_ARRAY_SIZE(pjsua_var.buddy),
@@ -459,6 +465,7 @@ pjsua_buddy_add(const pjsua_buddy_config *cfg,
 
 	/* Get name and display name for buddy */
 	pj_strdup_with_null(buddy->pool, &tmp, &cfg->uri);
+	pj_strdup_with_null(buddy->pool, &tmpEvent, &cfg->event);
 	url = (pjsip_name_addr *)pjsip_parse_uri(buddy->pool, tmp.ptr, tmp.slen,
 											 PJSIP_PARSE_URI_AS_NAMEADDR);
 
@@ -487,11 +494,9 @@ pjsua_buddy_add(const pjsua_buddy_config *cfg,
 	 */
 	reset_buddy(index);
 
-	/* Event */
-	pjsua_var.buddy[index].event = cfg->event;
-
 	/* Save URI */
 	pjsua_var.buddy[index].uri = tmp;
+	pjsua_var.buddy[index].event = tmpEvent;
 
 	sip_uri = (pjsip_sip_uri *)pjsip_uri_get_uri(url->uri);
 	pjsua_var.buddy[index].name = sip_uri->user;
@@ -1882,19 +1887,7 @@ static void pjsua_evsub_on_rx_notify(pjsip_evsub *sub,
 									 pjsip_msg_body **p_body)
 {
 
-	PJ_LOG(4, (THIS_FILE, "DBGR 1 changed"));
 	pjsua_buddy *buddy;
-	PJ_LOG(4, (THIS_FILE, "DBGR 2"));
-	if (rdata->msg_info.msg != NULL && rdata->msg_info.msg->body != NULL)
-	{
-		PJ_LOG(4, (THIS_FILE, "DBGR 3: %d", rdata->msg_info.msg->body->len));
-		PJ_LOG(4, (THIS_FILE, "DBGR 4"));
-		char *full_body = (char *)rdata->msg_info.msg->body->data;
-		PJ_LOG(4, (THIS_FILE, "DBGR 5"));
-		PJ_LOG(4, (THIS_FILE, "Received notify: %s", full_body));
-		PJ_LOG(4, (THIS_FILE, "DBGR 6"));
-	}
-
 	/* Note: #937: no need to acuire PJSUA_LOCK here. Since the buddy has
 	 *   a dialog attached to it, lock_buddy() will use the dialog
 	 *   lock, which we are currently holding!
@@ -1904,6 +1897,18 @@ static void pjsua_evsub_on_rx_notify(pjsip_evsub *sub,
 	{
 		/* Update our info. */
 		pjsip_pres_get_status(sub, &buddy->status);
+		if (rdata->msg_info.msg != NULL && rdata->msg_info.msg->body != NULL)
+		{
+			char *full_body = (char *)rdata->msg_info.msg->body->data;
+			/* Call callbacks */
+			pj_str_t pres = {"presence", 8};
+			if (pj_strcmp(&buddy->event, &pres) != 0)
+			{
+				if (pjsua_var.ua_cfg.cb.on_buddy_notify)
+					(*pjsua_var.ua_cfg.cb.on_buddy_notify)(buddy->index, sub,
+														   full_body);
+			}
+		}
 	}
 
 	/* The default is to send 200 response to NOTIFY.

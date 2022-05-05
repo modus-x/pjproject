@@ -120,6 +120,7 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		pjsip-apps\src\pjsua\winrt\cli\comp\pjsua_cli_shared_comp.vcxitems*{207e7bd4-7b11-4a40-ba3a-cc627762a7b6}*SharedItemsImports = 4
 		pjsip-apps\src\pjsua\winrt\cli\comp\pjsua_cli_shared_comp.vcxitems*{45d41acc-2c3c-43d2-bc10-02aa73ffc7c7}*SharedItemsImports = 9
+		pjsip-apps\src\pjsua\winrt\cli\comp\pjsua_cli_shared_comp.vcxitems*{e75efd41-c7f5-44c8-8ff1-a310d920989d}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1554,7 +1555,6 @@ Global
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug|Win32.ActiveCfg = Debug|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug|Win32.Build.0 = Debug|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug|x64.ActiveCfg = Debug|x64
-		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug|x64.Build.0 = Debug|x64
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Dynamic|Any CPU.ActiveCfg = Release|x64
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Dynamic|Any CPU.Build.0 = Release|x64
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Dynamic|ARM.ActiveCfg = Debug|Win32
@@ -1563,7 +1563,6 @@ Global
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Dynamic|Win32.ActiveCfg = Debug|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Dynamic|Win32.Build.0 = Debug|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Dynamic|x64.ActiveCfg = Debug|x64
-		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Dynamic|x64.Build.0 = Debug|x64
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Static|Any CPU.ActiveCfg = Release|x64
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Static|Any CPU.Build.0 = Release|x64
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Static|ARM.ActiveCfg = Debug|Win32
@@ -1572,7 +1571,6 @@ Global
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Static|Win32.ActiveCfg = Debug|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Static|Win32.Build.0 = Debug|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Static|x64.ActiveCfg = Debug|x64
-		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Debug-Static|x64.Build.0 = Debug|x64
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release|Any CPU.ActiveCfg = Release|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release|ARM.ActiveCfg = Release|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release|ARM64.ActiveCfg = Release|ARM64
@@ -1580,7 +1578,6 @@ Global
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release|Win32.ActiveCfg = Release|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release|Win32.Build.0 = Release|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release|x64.ActiveCfg = Release|x64
-		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release|x64.Build.0 = Release|x64
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Dynamic|Any CPU.ActiveCfg = Release|x64
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Dynamic|Any CPU.Build.0 = Release|x64
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Dynamic|ARM.ActiveCfg = Release|Win32
@@ -1589,7 +1586,6 @@ Global
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Dynamic|Win32.ActiveCfg = Release|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Dynamic|Win32.Build.0 = Release|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Dynamic|x64.ActiveCfg = Release|x64
-		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Dynamic|x64.Build.0 = Release|x64
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Static|Any CPU.ActiveCfg = Release|x64
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Static|Any CPU.Build.0 = Release|x64
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Static|ARM.ActiveCfg = Release|Win32
@@ -1598,7 +1594,6 @@ Global
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Static|Win32.ActiveCfg = Release|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Static|Win32.Build.0 = Release|Win32
 		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Static|x64.ActiveCfg = Release|x64
-		{5E507EA2-CB39-47CA-BD39-49EB58D7A0BB}.Release-Static|x64.Build.0 = Release|x64
 		{A1989FF3-9894-40F4-B5A6-6EA364476E45}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{A1989FF3-9894-40F4-B5A6-6EA364476E45}.Debug|ARM.ActiveCfg = Debug|ARM
 		{A1989FF3-9894-40F4-B5A6-6EA364476E45}.Debug|ARM.Build.0 = Debug|ARM

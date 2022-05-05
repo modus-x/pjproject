@@ -1962,6 +1962,9 @@ private:
     static void on_buddy_evsub_state(pjsua_buddy_id buddy_id,
 				     pjsip_evsub *sub,
 				     pjsip_event *event);
+    static void on_buddy_notify(pjsua_buddy_id buddy_id,
+				     pjsip_evsub *sub,
+				     char *body);
     // Call callbacks
     static void on_call_state(pjsua_call_id call_id, pjsip_event *e);
     static void on_call_tsx_state(pjsua_call_id call_id,

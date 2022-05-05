@@ -1593,6 +1593,10 @@ typedef struct pjsua_callback
 				 pjsip_evsub *sub,
 				 pjsip_event *event);
 
+     void (*on_buddy_notify)(pjsua_buddy_id buddy_id,
+				     pjsip_evsub *sub,
+				     char *body);
+
     /**
      * Notify application on incoming pager (i.e. MESSAGE request).
      * Argument call_id will be -1 if MESSAGE request is not related to an
@@ -6201,6 +6205,9 @@ typedef struct pjsua_buddy_info
      * The full URI of the buddy, as specified in the configuration.
      */
     pj_str_t		uri;
+
+
+    pj_str_t		event;
 
     /**
      * Buddy's Contact, only available when presence subscription has

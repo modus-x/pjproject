@@ -57,6 +57,7 @@ void BuddyConfig::writeObject(ContainerNode &node) const PJSUA2_THROW(Error)
 void BuddyInfo::fromPj(const pjsua_buddy_info &pbi)
 {
     uri 		= pj2Str(pbi.uri);
+    event = pj2Str(pbi.event);
     contact 		= pj2Str(pbi.contact);
     presMonitorEnabled 	= PJ2BOOL(pbi.monitor_pres);
     subState 		= pbi.sub_state;

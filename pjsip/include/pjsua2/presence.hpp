@@ -175,6 +175,8 @@ struct BuddyInfo
      */
     PresenceStatus	 presStatus;
 
+    string event;
+
 public:
     /**
      * Default constructor
@@ -198,6 +200,17 @@ struct OnBuddyEvSubStateParam
      * * The event which triggers state change event.
      */
     SipEvent    e;
+};
+
+/**
+ * This structure contains parameters for Buddy::onBuddyNotify() callback.
+ */
+struct OnBuddyNotifyParam
+{
+    /**
+     * * Message received in notify.
+     */
+    string    msg;
 };
 
 
@@ -336,6 +349,9 @@ public:
      */
     virtual void onBuddyEvSubState(OnBuddyEvSubStateParam &prm)
     { PJ_UNUSED_ARG(prm); }
+
+    virtual void onBuddyNotify(BuddyInfo &info, OnBuddyNotifyParam &prm)
+    { PJ_UNUSED_ARG(prm); PJ_UNUSED_ARG(info); }
      
 private:
      /**

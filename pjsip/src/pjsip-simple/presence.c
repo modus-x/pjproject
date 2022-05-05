@@ -126,11 +126,15 @@ static pjsip_evsub_user pres_user =
  */
 static const pj_str_t STR_EVENT = {"Event", 5};
 static const pj_str_t STR_PRESENCE = {"presence", 8};
-static const pj_str_t STR_XLOSTCALLS = {"x-lostcalls", 11};
+static const pj_str_t STR_LOST_CALLS = {"x-lostcalls", 11};
+static const pj_str_t STR_MESSAGE_SUMMARY = {"message-summary", 15};
+static const pj_str_t STR_QUEUE_STATUS = {"x-queuestatus", 13};
+static const pj_str_t STR_OPERATOR_MESSAGES = {"x-operatormessages", 18};
 static const pj_str_t STR_APPLICATION = {"application", 11};
 static const pj_str_t STR_PIDF_XML = {"pidf+xml", 8};
 static const pj_str_t STR_XPIDF_XML = {"xpidf+xml", 9};
 static const pj_str_t STR_APP_PIDF_XML = {"application/pidf+xml", 20};
+static const pj_str_t STR_APP_JSON = {"text/json", 20};
 static const pj_str_t STR_APP_XPIDF_XML = {"application/xpidf+xml", 21};
 
 /*
@@ -141,7 +145,7 @@ pjsip_pres_init_module(pjsip_endpoint *endpt,
                        pjsip_module *mod_evsub)
 {
     pj_status_t status;
-    pj_str_t accept[2];
+    pj_str_t accept[3];
 
     /* Check arguments. */
     PJ_ASSERT_RETURN(endpt && mod_evsub, PJ_EINVAL);
@@ -156,14 +160,19 @@ pjsip_pres_init_module(pjsip_endpoint *endpt,
 
     accept[0] = STR_APP_PIDF_XML;
     accept[1] = STR_APP_XPIDF_XML;
+    accept[2] = STR_APP_JSON;
 
     /* Register event package to event module. */
     status = pjsip_evsub_register_pkg(&mod_presence, &STR_PRESENCE,
                                       PRES_DEFAULT_EXPIRES,
                                       PJ_ARRAY_SIZE(accept), accept);
-    status = pjsip_evsub_register_pkg(&mod_presence, &STR_XLOSTCALLS,
-                                      PRES_DEFAULT_EXPIRES,
+    status = pjsip_evsub_register_pkg(&mod_presence, &STR_LOST_CALLS,
+                                      233,
                                       PJ_ARRAY_SIZE(accept), accept);
+    status = pjsip_evsub_register_pkg(&mod_presence, &STR_QUEUE_STATUS,
+                                      233,
+                                      PJ_ARRAY_SIZE(accept), accept);
+ 
     if (status != PJ_SUCCESS)
     {
         pjsip_endpt_unregister_module(endpt, &mod_presence);
@@ -295,8 +304,7 @@ pjsip_pres_create_uas(pjsip_dialog *dlg,
 
         if (i == accept->count)
         {
-            /* Nothing is acceptable */
-            return PJSIP_ERRNO_FROM_SIP_STATUS(PJSIP_SC_NOT_ACCEPTABLE);
+                content_type = CONTENT_TYPE_NONE;
         }
     }
     else
@@ -796,7 +804,7 @@ static pj_status_t pres_process_rx_notify(pjsip_pres *pres,
     }
     else
     {
-        status = PJSIP_SIMPLE_EBADCONTENT;
+        status = PJ_SUCCESS;
     }
 
     if (status != PJ_SUCCESS)

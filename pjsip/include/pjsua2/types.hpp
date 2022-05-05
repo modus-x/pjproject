@@ -245,12 +245,12 @@ struct TimeVal
     /**
      * The seconds part of the time.
      */
-    long sec;
+    int64_t sec;
     
     /**
      * The miliseconds fraction of the time.
      */
-    long msec;
+    int64_t msec;
     
 public:
     /**

@@ -1106,6 +1106,32 @@ void Endpoint::on_buddy_evsub_state(pjsua_buddy_id buddy_id,
     buddy->onBuddyEvSubState(prm);
 }
 
+void Endpoint::on_buddy_notify(pjsua_buddy_id buddy_id,
+				    pjsip_evsub *sub,
+				    char *body)
+{
+    PJ_UNUSED_ARG(sub);
+
+    Buddy b(buddy_id);
+    Buddy *buddy = b.getOriginalInstance();
+    if (!buddy || !buddy->isValid()) {
+    PJ_UNUSED_ARG(sub);
+	/* Ignored */
+	return;
+    }
+
+    OnBuddyNotifyParam prm;
+    std::string converted(body);
+    prm.msg = converted;
+
+    BuddyInfo bi = buddy->getInfo();
+    
+    buddy->onBuddyNotify(bi, prm);
+}
+
+
+
+
 // Call callbacks
 void Endpoint::on_call_state(pjsua_call_id call_id, pjsip_event *e)
 {
@@ -1862,6 +1888,7 @@ void Endpoint::libInit(const EpConfig &prmEpConfig) PJSUA2_THROW(Error)
     ua_cfg.cb.on_mwi_info	= &Endpoint::on_mwi_info;
     ua_cfg.cb.on_buddy_state	= &Endpoint::on_buddy_state;
     ua_cfg.cb.on_buddy_evsub_state = &Endpoint::on_buddy_evsub_state;
+    ua_cfg.cb.on_buddy_notify = &Endpoint::on_buddy_notify;
     ua_cfg.cb.on_acc_find_for_incoming  = &Endpoint::on_acc_find_for_incoming;
     ua_cfg.cb.on_ip_change_progress	= &Endpoint::on_ip_change_progress;
 
