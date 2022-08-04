@@ -32,6 +32,9 @@
     <ClCompile Include="..\src\pjmedia-videodev\sdl_dev.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\pjmedia-videodev\flutter_dev.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\pjmedia-videodev\videodev.c">
       <Filter>Source Files</Filter>
     </ClCompile>

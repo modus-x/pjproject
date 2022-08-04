@@ -980,6 +980,16 @@
 #endif
 
 
+/**
+ * This setting controls whether Flutter support should be included.
+ *
+ * Default: 0
+ */
+#ifndef PJMEDIA_VIDEO_DEV_HAS_FLUTTER
+#   define PJMEDIA_VIDEO_DEV_HAS_FLUTTER     0
+#endif
+
+
 /*
  * Secure socket implementation.
  * Select one of these implementations in PJ_SSL_SOCK_IMP.

@@ -304,6 +304,11 @@ typedef enum pjmedia_vid_dev_cap
     PJMEDIA_VID_DEV_CAP_OUTPUT_FULLSCREEN = 1024,
 
     /**
+     * Support for sending BGRA buffer to flutter
+     */
+    PJMEDIA_VID_DEV_CAP_FLUTTER_TEXTURE = 2048,
+
+    /**
      * End of standard capability
      */
     PJMEDIA_VID_DEV_CAP_MAX = 16384
@@ -491,6 +496,12 @@ typedef struct pjmedia_vid_dev_param
      * if PJMEDIA_VID_DEV_CAP_OUTPUT_WINDOW_FLAGS is set in the flags.
      */
     unsigned window_flags;
+
+    /**
+     * Binding to texture_id
+     * 
+     */
+    pj_uint64_t texture_id;
 
     /**
      * Video window's fullscreen status. This setting is optional, and will

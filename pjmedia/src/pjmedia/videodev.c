@@ -48,7 +48,8 @@ static struct cap_info
     DEFINE_CAP("orientation",   "Video orientation"),
     DEFINE_CAP("switch",        "Switch device"),
     DEFINE_CAP("wndflags",      "Window flags"),
-    DEFINE_CAP("fullscreen",    "Renderer fullscreen")
+    DEFINE_CAP("fullscreen",    "Renderer fullscreen"),
+    DEFINE_CAP("texture_id",    "Send buffer in BGRA format to flutter")
 };
 
 
@@ -112,6 +113,9 @@ static pj_status_t get_cap_pointer(const pjmedia_vid_dev_param *param,
     switch (cap) {
     case PJMEDIA_VID_DEV_CAP_FORMAT:
 	FIELD_INFO(fmt);
+	break;
+    case PJMEDIA_VID_DEV_CAP_FLUTTER_TEXTURE:
+	FIELD_INFO(texture_id);
 	break;
     case PJMEDIA_VID_DEV_CAP_INPUT_SCALE:
 	FIELD_INFO(disp_size);

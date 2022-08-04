@@ -2247,6 +2247,15 @@ static void on_tp_state_callback(pjsip_transport *tp,
     pjsua_acc_on_tp_state_changed(tp, state, info);
 }
 
+static void on_new_frame_callback(void *buffer,
+        int width,
+        int height,
+        int size,
+        pj_uint64_t texture_id)
+{
+	(*pjsua_var.ua_cfg.cb.on_new_frame)(buffer, width, height, size, texture_id);
+}
+
 /* Set transport state callback */
 static void set_tp_state_cb()
 {

@@ -287,14 +287,8 @@ static pj_status_t create_rtp_rtcp_sock(pjsua_call_media *call_med,
 	}
     }
 
-    if (acc->next_rtp_port == 0 || cfg->port == 0) {
-	if (cfg->port != 0 && cfg->port_range != 0 && cfg->randomize_port) {
-	    unsigned offset = ((pj_rand() % (cfg->port_range)) / 2) * 2;
-	    acc->next_rtp_port = (pj_uint16_t)cfg->port + offset;
-	} else {
-	    acc->next_rtp_port = (pj_uint16_t)cfg->port;
-	}
-    }
+    if (acc->next_rtp_port == 0 || cfg->port == 0)
+	acc->next_rtp_port = (pj_uint16_t)cfg->port;
 
     for (i=0; i<2; ++i)
 	sock[i] = PJ_INVALID_SOCKET;
@@ -684,14 +678,8 @@ static pj_status_t create_loop_media_transport(
     if (cfg->bound_addr.slen)
         opt.addr = cfg->bound_addr;
 
-    if (acc->next_rtp_port == 0 || cfg->port == 0) {
-        if (cfg->port != 0 && cfg->port_range != 0 && cfg->randomize_port) {
-            unsigned offset = ((pj_rand() % (cfg->port_range)) / 2) * 2;
- 	    acc->next_rtp_port = (pj_uint16_t)cfg->port + offset;
-        } else {
-	    acc->next_rtp_port = (pj_uint16_t)cfg->port;
-	}
-    }
+    if (acc->next_rtp_port == 0 || cfg->port == 0)
+	acc->next_rtp_port = (pj_uint16_t)cfg->port;
 
     if (cfg->port > 0 && cfg->port_range > 0 &&
         (acc->next_rtp_port > cfg->port + cfg->port_range ||
@@ -1604,7 +1592,7 @@ pj_status_t call_media_on_event(pjmedia_event *event,
     pj_status_t status = PJ_SUCCESS;
 
     pjmedia_fourcc_name(event->type, ev_name);
-    PJ_LOG(5,(THIS_FILE, "Call %d: Media %d: Received media event, type=%s, "
+    PJ_LOG(5,(THIS_FILE, "call_media_on_event Call %d: Media %d: Received media event, type=%s, "
 			 "src=%p, epub=%p",
 			 call->index, call_med->idx, ev_name,
 			 event->src, event->epub));
@@ -3205,7 +3193,7 @@ pj_status_t pjsua_media_channel_deinit(pjsua_call_id call_id)
 
     /* Print call dump first */
     dlg = (call->inv? call->inv->dlg : call->async_call.dlg);
-    if (dlg && pj_log_get_level() >= 3)
+    if (dlg)
     	log_call_dump(call_id);
 
     stop_media_session(call_id);
@@ -3909,12 +3897,10 @@ pj_status_t pjsua_media_channel_update(pjsua_call_id call_id,
 	    stream_info.type = PJMEDIA_TYPE_AUDIO;
 	    stream_info.info.aud = the_si;
 
-#if PJSUA_MEDIA_HAS_PJMEDIA || PJSUA_THIRD_PARTY_STREAM_HAS_GET_INFO
 #if defined(PJMEDIA_HAS_SRTP) && (PJMEDIA_HAS_SRTP != 0)
 	    /* Check if we need to reset or maintain SRTP ROC */
 	    check_srtp_roc(call, mi, &stream_info,
 	    		   local_sdp->media[mi], remote_sdp->media[mi]);
-#endif
 #endif
 
 	    /* Check if this media is changed */
@@ -4483,4 +4469,3 @@ pj_status_t pjsua_media_apply_xml_control(pjsua_call_id call_id,
 
     return PJ_ENOTSUP;
 }
-

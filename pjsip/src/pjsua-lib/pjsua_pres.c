@@ -1886,7 +1886,6 @@ static void pjsua_evsub_on_rx_notify(pjsip_evsub *sub,
 									 pjsip_hdr *res_hdr,
 									 pjsip_msg_body **p_body)
 {
-
 	pjsua_buddy *buddy;
 	/* Note: #937: no need to acuire PJSUA_LOCK here. Since the buddy has
 	 *   a dialog attached to it, lock_buddy() will use the dialog
@@ -1897,17 +1896,13 @@ static void pjsua_evsub_on_rx_notify(pjsip_evsub *sub,
 	{
 		/* Update our info. */
 		pjsip_pres_get_status(sub, &buddy->status);
-		if (rdata->msg_info.msg != NULL && rdata->msg_info.msg->body != NULL)
+		if (rdata->msg_info.msg->body)
 		{
 			char *full_body = (char *)rdata->msg_info.msg->body->data;
 			/* Call callbacks */
-			pj_str_t pres = {"presence", 8};
-			if (pj_strcmp(&buddy->event, &pres) != 0)
-			{
-				if (pjsua_var.ua_cfg.cb.on_buddy_notify)
-					(*pjsua_var.ua_cfg.cb.on_buddy_notify)(buddy->index, sub,
-														   full_body);
-			}
+			if (pjsua_var.ua_cfg.cb.on_buddy_notify)
+				(*pjsua_var.ua_cfg.cb.on_buddy_notify)(buddy->index, sub,
+													   full_body);
 		}
 	}
 

@@ -385,6 +385,12 @@
     <_ProjectFileVersion>14.0.22823.1</_ProjectFileVersion>
     <TargetName>pjmedia-videodev-$(TargetCPU)-$(Platform)-vc$(VSVer)-$(Configuration)</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Dynamic|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)/pjsip/include;</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Dynamic|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)/pjsip/include;</IncludePath>
+  </PropertyGroup>
   <!-- Compile and link option definition -->
   <ItemDefinitionGroup>
     <ClCompile>
@@ -681,6 +687,7 @@
     <ClCompile Include="..\src\pjmedia-videodev\errno.c" />
     <ClCompile Include="..\src\pjmedia-videodev\ffmpeg_dev.c" />
     <ClCompile Include="..\src\pjmedia-videodev\sdl_dev.c" />
+    <ClCompile Include="..\src\pjmedia-videodev\flutter_dev.c" />
     <ClCompile Include="..\src\pjmedia-videodev\videodev.c" />
   </ItemGroup>
   <ItemGroup>

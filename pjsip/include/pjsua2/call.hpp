@@ -1267,6 +1267,8 @@ struct CallVidSetStreamParam
      *              if none is active)
      */
     int                     medIdx;
+
+    pj_uint64_t texture_id;
     
     /**
      * Specify the media stream direction.
