@@ -1,13 +1,7 @@
 
-// windows target
-#if defined(PJ_WIN32)
-
 #define PJMEDIA_HAS_VIDEO 1
-#define PJMEDIA_HAS_OPENH264_CODEC 1
 #define PJMEDIA_HAS_LIBYUV 1
 #define PJMEDIA_VIDEO_DEV_HAS_SDL 0
-
-#define PJ_HAS_FLOATING_POINT 0
 
 #define PJMEDIA_HAS_L16_CODEC 0
 
@@ -29,7 +23,17 @@
 #define PJ_DEBUG_MUTEX 0
 
 #define PJMEDIA_VIDEO_DEV_HAS_FLUTTER 1
+
+// windows target
+#if defined(PJ_WIN32)
+
+#define PJMEDIA_HAS_OPENH264_CODEC 1
 #define PJMEDIA_WMME_DEV_USE_MMDEVICE_API 1
 #define PJMEDIA_AUDIO_DEV_HAS_WMME 1
 
 #endif /* PJ_WIN32 */
+
+/// linux target
+#if defined(PJ_LINUX)
+
+#endif /* PJ_LINUX */
