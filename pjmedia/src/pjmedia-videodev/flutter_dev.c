@@ -22,6 +22,7 @@
 #include <pj/log.h>
 #include <pj/os.h>
 
+
 #define THIS_FILE "flutter_dev.c"
 
 #define DEFAULT_CLOCK_RATE 90000
@@ -363,40 +364,6 @@ static pj_status_t flutter_factory_default_param(pj_pool_t *pool,
     pj_memcpy(&param->fmt, &di->info.fmt[0], sizeof(param->fmt));
 
     return PJ_SUCCESS;
-}
-
-static void put_frame(void *buffer, int w, int h, int size)
-{
-#if defined(PJ_DARWINOS) && PJ_DARWINOS != 0
-    CVPixelBufferRef darwinBuffer = NULL;
-    CVReturn result = CVPixelBufferCreate(
-        kCFAllocatorDefault, w, h,
-        format->flutter_format, (__bridge CFDictionaryRef) @{
-            (__bridge NSString *)kCVPixelBufferIOSurfacePropertiesKey : [NSDictionary dictionary],
-            (__bridge NSString *)kCVPixelBufferMetalCompatibilityKey : @YES
-        },
-        &darwinBuffer);
-
-    if (result != kCVReturnSuccess)
-    {
-        PJ_LOG(2, (THIS_FILE, "Creation of empty BGRA buffer failed: %d", result));
-    }
-
-    CVPixelBufferLockBaseAddress(darwinBuffer, 0);
-    uint8_t *baseAddress = CVPixelBufferGetBaseAddress(darwinBuffer);
-    memcpy(baseAddress, buffer, size);
-    CVPixelBufferUnlockBaseAddress(darwinBuffer, 0);
-
-    if (call_id != -1)
-    {
-        [[textures getCallIdVideoTexture:@(call_id)] newFrameAvailable:darwinBuffer];
-    }
-    else
-    {
-        [[textures callerTexture] newFrameAvailable:darwinBuffer];
-    }
-#else  /* PJ_DARWINOS */
-#endif /* PJ_DARWINOS */
 }
 
 /* API: Put frame from stream */
