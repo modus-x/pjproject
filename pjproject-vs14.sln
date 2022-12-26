@@ -117,10 +117,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libwebrtc_aec3", "third_party\build\webrtc_aec3\libwebrtc_aec3.vcxproj", "{D738A812-CE37-40A4-B2FA-D81488C12C87}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		pjsip-apps\src\pjsua\winrt\cli\comp\pjsua_cli_shared_comp.vcxitems*{207e7bd4-7b11-4a40-ba3a-cc627762a7b6}*SharedItemsImports = 4
-		pjsip-apps\src\pjsua\winrt\cli\comp\pjsua_cli_shared_comp.vcxitems*{45d41acc-2c3c-43d2-bc10-02aa73ffc7c7}*SharedItemsImports = 9
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
@@ -2451,5 +2447,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9D1363FE-B481-479E-82A2-290F6C4DB91B}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		pjsip-apps\src\pjsua\winrt\cli\comp\pjsua_cli_shared_comp.vcxitems*{207e7bd4-7b11-4a40-ba3a-cc627762a7b6}*SharedItemsImports = 4
+		pjsip-apps\src\pjsua\winrt\cli\comp\pjsua_cli_shared_comp.vcxitems*{45d41acc-2c3c-43d2-bc10-02aa73ffc7c7}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal
