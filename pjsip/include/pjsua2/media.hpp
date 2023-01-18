@@ -2344,7 +2344,6 @@ public:
     			  pjmedia_orient orient,
     			  bool keep=true) PJSUA2_THROW(Error);
 
-private:
 #if !DEPRECATED_FOR_TICKET_2232
     VideoDevInfoVector videoDevList;
 #endif
