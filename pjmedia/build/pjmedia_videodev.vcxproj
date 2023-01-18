@@ -688,6 +688,7 @@
     <ClCompile Include="..\src\pjmedia-videodev\ffmpeg_dev.c" />
     <ClCompile Include="..\src\pjmedia-videodev\sdl_dev.c" />
     <ClCompile Include="..\src\pjmedia-videodev\flutter_dev.c" />
+    <ClCompile Include="..\src\pjmedia-videodev\desktop_dev.c" />
     <ClCompile Include="..\src\pjmedia-videodev\videodev.c" />
   </ItemGroup>
   <ItemGroup>

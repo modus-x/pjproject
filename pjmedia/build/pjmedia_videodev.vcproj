@@ -912,6 +912,7 @@
 			<File RelativePath="..\src\pjmedia-videodev\ffmpeg_dev.c"></File>
 			<File RelativePath="..\src\pjmedia-videodev\sdl_dev.c"></File>
 			<File RelativePath="..\src\pjmedia-videodev\flutter_dev.c"></File>
+			<File RelativePath="..\src\pjmedia-videodev\desktop_dev.c"></File>
 			<File RelativePath="..\src\pjmedia-videodev\videodev.c"></File>
 		</Filter>
 		<Filter Name="Header Files" Filter="h;hpp;hxx;hm;inl">
