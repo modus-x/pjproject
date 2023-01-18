@@ -21,7 +21,8 @@
 #include <pj/assert.h>
 #include <pj/log.h>
 #include <pj/os.h>
-
+#include <pjsua-lib/pjsua.h>
+#include <pjsua-lib/pjsua_internal.h>
 
 #define THIS_FILE "flutter_dev.c"
 
@@ -407,8 +408,8 @@ static pj_status_t flutter_stream_put_frame(pjmedia_vid_dev_stream *strm,
                 &vid_param.fmt, PJ_TRUE);
             if (!vfd_cur)
                 return PJMEDIA_EVID_BADFORMAT;
-
-            // (*pjsua_var.ua_cfg.cb.on_new_frame)(frame->buf, w, h, size, stream->param.texture_id);
+            (*pjsua_var.ua_cfg.cb.on_new_frame)(frame->buf, w, h, size, stream->param.texture_id);
+            // PJ_LOG(1, (THIS_FILE, "SENT FRAME FRAME with %d x %d ts %d", stream->vafp.size.w, stream->vafp.size.h, stream->last_ts.u64));
             return PJ_SUCCESS;
         }
         else
