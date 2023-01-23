@@ -413,6 +413,10 @@ static pj_status_t alsa_factory_refresh(pjmedia_aud_dev_factory *f)
     n = hints;
     while (*n != NULL) {
 	char *name = snd_device_name_get_hint(*n, "NAME");
+	char *desc = snd_device_name_get_hint(*n, "DESC");
+    
+    PJ_LOG(4,(THIS_FILE, "ALSA driver found device with NAME %s, DESC %s", name, desc));
+    
 	if (name != NULL) {
 	    if (0 != strcmp("null", name))
 		add_dev(af, name);
