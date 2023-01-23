@@ -22,8 +22,6 @@
 #include <pj/log.h>
 #include <pj/os.h>
 #include <pj/rand.h>
-#include <windows.h>
-
 #define flipBits(n, b) ((n) ^ ((1u << (b)) - 1))
 
 #if defined(PJMEDIA_HAS_VIDEO) && PJMEDIA_HAS_VIDEO != 0 && \
@@ -32,6 +30,9 @@
 
 #define THIS_FILE "desktop_dev.c"
 
+#if defined(PJ_WIN32)
+#include <windows.h>
+#endif
 
 #define DEFAULT_CLOCK_RATE 90000
 #define DEFAULT_WIDTH 1920
@@ -312,7 +313,7 @@ static pj_status_t capture(pjmedia_frame *frame, struct desktop_stream *stream)
 
     pj_uint8_t *ptr = frame->buf;
 
-    BYTE* lpbitmap = NULL;
+    BYTE *lpbitmap = NULL;
     HANDLE hDIB = NULL;
 
     // Retrieve the handle to a display device context for the client
@@ -345,7 +346,7 @@ static pj_status_t capture(pjmedia_frame *frame, struct desktop_stream *stream)
     DWORD dwBmpSize = stream->vafp.size.w * stream->vafp.size.h * 4;
 
     hDIB = GlobalAlloc(GHND, dwBmpSize);
-    lpbitmap = (BYTE*)GlobalLock(hDIB);
+    lpbitmap = (BYTE *)GlobalLock(hDIB);
 
     // Create a bitmap from the Window DC.
     BITMAPV4HEADER bmpheader;
@@ -363,7 +364,7 @@ static pj_status_t capture(pjmedia_frame *frame, struct desktop_stream *stream)
     bmpheader.bV4BlueMask = 0x000000FF;
     bmpheader.bV4AlphaMask = 0xFF000000;
     bmpheader.bV4CSType = 0x57696e20; // LCS_WINDOWS_COLOR_SPACE
-    hbmp = CreateDIBSection(hdcWindow, (BITMAPINFO*)(&bmpheader), DIB_RGB_COLORS, (void**)&lpbitmap, NULL, 0);
+    hbmp = CreateDIBSection(hdcWindow, (BITMAPINFO *)(&bmpheader), DIB_RGB_COLORS, (void **)&lpbitmap, NULL, 0);
 
     if (!hbmp)
     {
@@ -376,12 +377,12 @@ static pj_status_t capture(pjmedia_frame *frame, struct desktop_stream *stream)
 
     // Bit block transfer into our compatible memory DC.
     if (!BitBlt(hdcMemDC,
-                    0, 0,
-                    stream->vafp.size.w,
-                    stream->vafp.size.h,
-                    hdcWindow,
-                    0, 0,
-                    SRCCOPY))
+                0, 0,
+                stream->vafp.size.w,
+                stream->vafp.size.h,
+                hdcWindow,
+                0, 0,
+                SRCCOPY))
     {
         PJ_LOG(1, (THIS_FILE, "StretchBlt has failed"));
         goto done;
