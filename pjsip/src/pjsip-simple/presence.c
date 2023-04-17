@@ -60,6 +60,7 @@ static struct pjsip_module mod_presence =
         NULL,                            /* on_tsx_state()			*/
 };
 
+
 /*
  * Presence message body type.
  */
@@ -126,10 +127,6 @@ static pjsip_evsub_user pres_user =
  */
 static const pj_str_t STR_EVENT = {"Event", 5};
 static const pj_str_t STR_PRESENCE = {"presence", 8};
-static const pj_str_t STR_LOST_CALLS = {"x-lostcalls", 11};
-static const pj_str_t STR_MESSAGE_SUMMARY = {"message-summary", 15};
-static const pj_str_t STR_QUEUE_STATUS = {"x-queuestatus", 13};
-static const pj_str_t STR_OPERATOR_MESSAGES = {"x-operatormessages", 18};
 static const pj_str_t STR_APPLICATION = {"application", 11};
 static const pj_str_t STR_PIDF_XML = {"pidf+xml", 8};
 static const pj_str_t STR_XPIDF_XML = {"xpidf+xml", 9};
@@ -145,7 +142,7 @@ pjsip_pres_init_module(pjsip_endpoint *endpt,
                        pjsip_module *mod_evsub)
 {
     pj_status_t status;
-    pj_str_t accept[3];
+    pj_str_t accept[2];
 
     /* Check arguments. */
     PJ_ASSERT_RETURN(endpt && mod_evsub, PJ_EINVAL);
@@ -160,19 +157,13 @@ pjsip_pres_init_module(pjsip_endpoint *endpt,
 
     accept[0] = STR_APP_PIDF_XML;
     accept[1] = STR_APP_XPIDF_XML;
-    accept[2] = STR_APP_JSON;
 
-    /* Register event package to event module. */
+    /* Register event packages to event module. */
+
     status = pjsip_evsub_register_pkg(&mod_presence, &STR_PRESENCE,
-                                      PRES_DEFAULT_EXPIRES,
-                                      PJ_ARRAY_SIZE(accept), accept);
-    status = pjsip_evsub_register_pkg(&mod_presence, &STR_LOST_CALLS,
                                       233,
                                       PJ_ARRAY_SIZE(accept), accept);
-    status = pjsip_evsub_register_pkg(&mod_presence, &STR_QUEUE_STATUS,
-                                      233,
-                                      PJ_ARRAY_SIZE(accept), accept);
- 
+
     if (status != PJ_SUCCESS)
     {
         pjsip_endpt_unregister_module(endpt, &mod_presence);
@@ -211,7 +202,7 @@ pjsip_pres_create_uac(pjsip_dialog *dlg,
     pjsip_dlg_inc_lock(dlg);
 
     /* Create event subscription */
-    PJ_LOG(4,(THIS_FILE, "Creating evsub uac for %s event", *event));
+    PJ_LOG(4, (THIS_FILE, "Creating evsub uac for %s event", *event));
     status = pjsip_evsub_create_uac(dlg, &pres_user, event,
                                     options, &sub);
     if (status != PJ_SUCCESS)
@@ -304,7 +295,7 @@ pjsip_pres_create_uas(pjsip_dialog *dlg,
 
         if (i == accept->count)
         {
-                content_type = CONTENT_TYPE_NONE;
+            content_type = CONTENT_TYPE_NONE;
         }
     }
     else
