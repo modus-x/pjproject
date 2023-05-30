@@ -217,6 +217,8 @@ PJ_DEF(pj_status_t) pjmedia_codec_opus_init( pjmedia_endpt *endpt )
 	goto on_codec_factory_error;
     }
 
+    PJ_LOG(4, (THIS_FILE, "OPUS codec initialized"));
+
     return PJ_SUCCESS;
 
 on_codec_factory_error:
@@ -1171,7 +1173,7 @@ static pj_status_t  codec_recover( pjmedia_codec *codec,
 }
 
 #if defined(_MSC_VER)
-#   pragma comment(lib, "libopus.a")
+#   pragma comment(lib, "opus.lib")
 #endif
 
 

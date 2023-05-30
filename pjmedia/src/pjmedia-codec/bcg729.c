@@ -619,4 +619,8 @@ static pj_status_t  bcg729_codec_recover(pjmedia_codec *codec,
     return PJ_SUCCESS;
 }
 
+#if defined(_MSC_VER)
+#   pragma comment(lib, "bcg729.lib")
+#endif
+
 #endif /* PJMEDIA_HAS_BCG729 */

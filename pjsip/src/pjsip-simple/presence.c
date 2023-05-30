@@ -161,7 +161,7 @@ pjsip_pres_init_module(pjsip_endpoint *endpt,
     /* Register event packages to event module. */
 
     status = pjsip_evsub_register_pkg(&mod_presence, &STR_PRESENCE,
-                                      233,
+                                      300,
                                       PJ_ARRAY_SIZE(accept), accept);
 
     if (status != PJ_SUCCESS)
