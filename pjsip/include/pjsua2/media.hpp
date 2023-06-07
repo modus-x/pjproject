@@ -810,6 +810,11 @@ struct AudioDevInfo
     string name;
 
     /**
+     * The device name
+     */
+    string desc;
+
+    /**
      * Maximum number of input channels supported by this device. If the
      * value is zero, the device does not support input operation (i.e.
      * it is a playback only device).

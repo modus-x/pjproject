@@ -627,6 +627,7 @@ void ToneGenerator::setDigitMap(const ToneDigitMapVector &digit_map)
 void AudioDevInfo::fromPj(const pjmedia_aud_dev_info &dev_info)
 {
     name = dev_info.name;
+    desc = dev_info.desc;
     inputCount = dev_info.input_count;
     outputCount = dev_info.output_count;
     defaultSamplesPerSec = dev_info.default_samples_per_sec;

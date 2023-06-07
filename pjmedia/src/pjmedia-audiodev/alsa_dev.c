@@ -215,7 +215,7 @@ print_msg:
 }
 
 
-static pj_status_t add_dev (struct alsa_factory *af, const char *dev_name)
+static pj_status_t add_dev (struct alsa_factory *af, const char *dev_name, const char *desc)
 {
     pjmedia_aud_dev_info *adi;
     snd_pcm_t* pcm;
@@ -226,7 +226,7 @@ static pj_status_t add_dev (struct alsa_factory *af, const char *dev_name)
 
     adi = &af->devs[af->dev_cnt];
 
-    TRACE_((THIS_FILE, "add_dev (%s): Enter", dev_name));
+    TRACE_((THIS_FILE, "add_dev (%s desc %s): Enter", dev_name, desc));
 
     /* Try to open the device in playback mode */
     pb_result = snd_pcm_open (&pcm, dev_name, SND_PCM_STREAM_PLAYBACK, 0);
@@ -260,6 +260,9 @@ static pj_status_t add_dev (struct alsa_factory *af, const char *dev_name)
 
     /* Set device name */
     strncpy(adi->name, dev_name, sizeof(adi->name));
+
+    /* Set device desc */
+    strncpy(adi->desc, desc, sizeof(adi->desc));
 
     /* Check the number of playback channels */
     adi->output_count = (pb_result>=0) ? 1 : 0;
@@ -415,11 +418,9 @@ static pj_status_t alsa_factory_refresh(pjmedia_aud_dev_factory *f)
 	char *name = snd_device_name_get_hint(*n, "NAME");
 	char *desc = snd_device_name_get_hint(*n, "DESC");
     
-    PJ_LOG(4,(THIS_FILE, "ALSA driver found device with NAME %s, DESC %s", name, desc));
-    
-	if (name != NULL) {
+	if (name != NULL && desc != NULL) {
 	    if (0 != strcmp("null", name))
-		add_dev(af, name);
+		add_dev(af, name, desc);
 	    free(name);
 	}
 	n++;
