@@ -390,7 +390,7 @@
     <ExternalIncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Dynamic|x64'">
-    <IncludePath>$(SolutionDir)\..\bin\openh264;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)../bin/openh264/include;</IncludePath>
+    <IncludePath>$(SolutionDir)\..\bin\openh264\include;$(SolutionDir)\..\bin\opus\include;$(SolutionDir)\..\bin\bcg729\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Static|x64'">
@@ -402,7 +402,7 @@
     <ExternalIncludePath>C:\Code\dart_pjsip\pjproject\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Dynamic|x64'">
-    <IncludePath>$(SolutionDir)\..\bin\openh264\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\..\bin\openh264\include;$(SolutionDir)\..\bin\opus\include;$(SolutionDir)\..\bin\bcg729\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
   </PropertyGroup>
