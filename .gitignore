@@ -1,4 +1,5 @@
 lib/
+!/lib/
 bin/
 output/
 
@@ -19,6 +20,7 @@ output/
 UpgradeLog*.htm
 # VS 2015 stuff
 *.pdb
+!/lib/*.pdb
 *.db
 *.opendb
 samples.log
